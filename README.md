@@ -1,34 +1,3 @@
-# app
-
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Run your unit tests
-```
-yarn test:unit
-```
-
-### Run your end-to-end tests
-```
-yarn test:e2e
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# Andrew Alliance Test
+Hello fellow interviewers, if you have started to check my test from the FrontEnd part I recommend starting with the BackEnd, it's where I started and the story will be better-told :).
+For the FrontEnd, I started with Vue, which is the Framework where I feel fluent right now (any time I can change, but time stills ticking...), also I used the Vue CLI, which bootstrap the app to ramp up this project.
