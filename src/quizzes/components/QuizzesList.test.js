@@ -7,7 +7,14 @@ jest.mock("@/quizzes/services/quizzesService", () => ({
   getAllQuizzes: jest.fn(),
 }));
 
-const stubs = ["q-icon", "q-item", "q-item-label", "q-item-section", "q-list"];
+const stubs = [
+  "q-icon",
+  "q-item",
+  "q-item-label",
+  "q-item-section",
+  "q-list",
+  "q-banner",
+];
 
 describe("QuizzesList", () => {
   it("Given we get the list of quizzes, when the components is mounted, then the list is drawn", async () => {
@@ -50,5 +57,18 @@ describe("QuizzesList", () => {
     expect(itemElements.at(0).attributes("to")).toEqual("/quizzes/11");
     //if is not ready should not have a link
     expect(itemElements.at(2).attributes("to")).toBeFalsy();
+  });
+
+  it("Given we don't have quizzes to show, when mounting QuizzesList, the we show a sorry message", async () => {
+    getAllQuizzes.mockResolvedValue({
+      quizzes: [],
+    });
+
+    const wrapper = shallowMount(QuizzesList, { stubs });
+    await flushPromises();
+
+    expect(wrapper.find("[data-test='sorry-message']").text()).toEqual(
+      "😢 Sorry there are no quizzes for the moment"
+    );
   });
 });
