@@ -1,28 +1,43 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <q-layout view="lHh Lpr lFf">
+    <q-header class="bg-white">
+      <q-toolbar>
+        <q-btn
+          flat
+          dense
+          round
+          @click="leftDrawerOpen = !leftDrawerOpen"
+          aria-label="Menu"
+          icon="menu"
+          class="text-dark"
+        />
+
+        <q-toolbar-title class="text-black">
+          <h3>Daniel's Quizzes</h3>
+        </q-toolbar-title>
+      </q-toolbar>
+    </q-header>
+
+    <app-menu :leftDrawerOpenProp="leftDrawerOpen" />
+
+    <q-page-container>
+      <router-view></router-view>
+    </q-page-container>
+  </q-layout>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import AppMenu from "@/views/common/Menu.vue";
 
 export default {
-  name: "App",
-  components: {
-    HelloWorld
+  name: "MainLayout",
+  components: { AppMenu },
+  data() {
+    return {
+      leftDrawerOpen: false
+    };
   }
 };
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+<style></style>
