@@ -18,7 +18,7 @@
       </q-toolbar>
     </q-header>
 
-    <app-menu :leftDrawerOpen="leftDrawerOpen" />
+    <app-menu :leftDrawerOpenProp="leftDrawerOpen" />
 
     <q-page-container>
       <router-view></router-view>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import AppMenu from "@/views/Menu.vue";
+import AppMenu from "@/views/common/Menu.vue";
 
 export default {
   name: "MainLayout",

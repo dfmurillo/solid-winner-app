@@ -8,7 +8,7 @@
     >
       <q-list>
         <q-item-label header>Quiz options</q-item-label>
-        <q-item to="/">
+        <q-item to="/" exact>
           <q-item-section avatar>
             <q-icon name="home" />
           </q-item-section>
@@ -43,10 +43,20 @@
 export default {
   name: "AppMenu",
   props: {
-    leftDrawerOpen: {
+    leftDrawerOpenProp: {
       type: Boolean,
       required: true,
       default: false
+    }
+  },
+  data() {
+    return {
+      leftDrawerOpen: this.leftDrawerOpenProp
+    };
+  },
+  watch: {
+    leftDrawerOpenProp(value) {
+      this.leftDrawerOpen = value;
     }
   }
 };

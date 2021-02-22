@@ -1,3 +1,8 @@
 # Andrew Alliance Test
 Hello fellow interviewers, if you have started to check my test from the FrontEnd part I recommend starting with the BackEnd, it's where I started and the story will be better-told :).
 For the FrontEnd, I started with Vue, which is the Framework where I feel fluent right now (any time I can change, but time stills ticking...), also I used the Vue CLI, which bootstrap the app to ramp up this project.
+
+PR (#1)
+In this PR I'm going to start by applying some template, I´ll be searching for one with a good UI, remember, we are not trying to reinvent the wheel in this test and the time saved creating a UI can be invested in creating a better experience.
+So I picked `quasar`, to be honest, will be my first time using it, normally I use Vuetify, but I don't feel fully pleased with it, so let's see how it goes.
+
