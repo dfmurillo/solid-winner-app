@@ -12,10 +12,10 @@
           :done="quizStep > question.questionId"
         >
           <quiz-question
-            :questionAnswersProp="question.answers"
-            :answerTypeProp="question.answerType"
-            :quizStepProp="quizStep"
-            :previousDataProp="currentAnswers"
+            :questionAnswers="question.answers"
+            :answerType="question.answerType"
+            :quizStep="quizStep"
+            :previousData="currentAnswers"
             @onSelected="answerIsSelected"
           />
           <q-stepper-navigation>
@@ -23,13 +23,14 @@
               v-if="quizStep < quizQuestions.questions.length"
               @click="quizStep += 1"
               color="primary"
-              label="Next!"
+              label="Hit me!"
               :disabled="disabledNextButton"
             />
             <q-btn
               v-else
+              @click="validateAndSaveQuiz"
               color="primary"
-              label="Check your answers!"
+              label="Check your answers! 😎"
               :disabled="disabledNextButton"
             />
             <q-btn
@@ -48,7 +49,8 @@
 </template>
 <script>
 import QuizQuestion from "@/quizzes/components/QuizQuestion.vue";
-import { getQuizById } from "@/quizzes/services/quizzesService";
+import { getQuizById, validateQuiz } from "@/quizzes/services/quizzesService";
+import { saveQuizInLocal } from "@/helpers/localStorage";
 export default {
   name: "QuizSingleComponent",
   components: {
@@ -112,6 +114,11 @@ export default {
         return questionProgress;
       });
       this.disabledNextButton = false;
+    },
+    async validateAndSaveQuiz() {
+      const { quizResult } = await validateQuiz(this.quizId, this.quizProgress);
+      saveQuizInLocal(this.quizId, quizResult, this.quizProgress);
+      this.$router.push({ name: "Quizzes" });
     }
   }
 };

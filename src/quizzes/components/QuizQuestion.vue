@@ -27,29 +27,25 @@
 export default {
   name: "QuizQuestion",
   props: {
-    questionAnswersProp: {
+    questionAnswers: {
       type: Array,
       required: true
     },
-    answerTypeProp: {
+    answerType: {
       type: String,
       required: true
     },
-    quizStepProp: {
+    quizStep: {
       type: Number,
       required: true
     },
-    previousDataProp: {
+    previousData: {
       type: Array,
       default: () => []
     }
   },
   data() {
     return {
-      questionAnswers: this.questionAnswersProp,
-      answerType: this.answerTypeProp,
-      quizStep: this.quizStepProp,
-      previousData: this.previousDataProp,
       multipleAnswersValue: [],
       singleAnswersValue: null
     };

@@ -9,8 +9,12 @@ So I picked `quasar`, to be honest, will be my first time using it, normally I u
 PR (#2)
 Soo, going well right now, some mental notes, implement GitHub actions for the CI (maybe I won't do it, but is something important to ensure we are not merging failing branches!). 
 Continuing with the work, now I'm going to implement the functionality no navigate to a quiz, answer questions and save the results and the user actions.
+Well, at this point I have decided to continue with the functionality and do tests at the end, normally, I do tests and functionality at the same time, this decision was taken just to gain some time, acknowledging that because of this I could refactor code in further steps.
+I have finished the logic of the answers, now I'm moving towards validating the quiz, and save the quiz result. 
 
 
 [ TODO ]
 [ ] Add micro-interactions
+[ ] Take the time spent on each quiz and each question
+[ ] Once a quiz is validated, stay on the same page and allow the user to navigate within the answered quizzes showing his responses and the correct ones if that's the case
 
