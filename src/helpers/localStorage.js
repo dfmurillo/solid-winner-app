@@ -3,7 +3,7 @@ const getQuizKey = (quizId = 0) => {
 };
 
 export const saveQuizInLocal = (quizId, score, questionAnswers) => {
-  let quizDataToSave = getQuizzesByIdFromLocal(quizId) || [];
+  const quizDataToSave = getQuizzesByIdFromLocal(quizId) || [];
 
   quizDataToSave.push({
     score,
