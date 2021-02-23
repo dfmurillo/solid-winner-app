@@ -38,6 +38,10 @@ export default {
     quizStepProp: {
       type: Number,
       required: true
+    },
+    previousDataProp: {
+      type: Array,
+      default: () => []
     }
   },
   data() {
@@ -45,19 +49,41 @@ export default {
       questionAnswers: this.questionAnswersProp,
       answerType: this.answerTypeProp,
       quizStep: this.quizStepProp,
+      previousData: this.previousDataProp,
       multipleAnswersValue: [],
       singleAnswersValue: null
     };
   },
   mounted() {
-    this.fillAnswersValueWithFalse();
+    this.assignValuesToQuestion();
   },
   methods: {
+    assignValuesToQuestion() {
+      if (this.previousData.length === 0 && this.answerType === "multiple") {
+        this.fillAnswersValueWithFalse();
+        return true;
+      } else if (this.previousData.length > 0) {
+        this.assingPreviousDataToComponent();
+        return true;
+      }
+      return false;
+    },
     fillAnswersValueWithFalse() {
       this.multipleAnswersValue = Array.from(
         Array(this.questionAnswers.length),
         () => false
       );
+    },
+    assingPreviousDataToComponent() {
+      if (this.answerType === "single") {
+        this.singleAnswersValue = this.previousData[0];
+        return true;
+      } else {
+        this.multipleAnswersValue = this.questionAnswers.map(({ answerId }) =>
+          this.previousData.indexOf(answerId) >= 0 ? answerId : false
+        );
+      }
+      return false;
     },
     multipleOptionSelected() {
       this.emitAnswer(this.multipleAnswersValue.filter(value => value));

@@ -15,6 +15,7 @@
             :questionAnswersProp="question.answers"
             :answerTypeProp="question.answerType"
             :quizStepProp="quizStep"
+            :previousDataProp="currentAnswers"
             @onSelected="answerIsSelected"
           />
           <q-stepper-navigation>
@@ -23,6 +24,12 @@
               @click="quizStep += 1"
               color="primary"
               label="Next!"
+              :disabled="disabledNextButton"
+            />
+            <q-btn
+              v-else
+              color="primary"
+              label="Check your answers!"
               :disabled="disabledNextButton"
             />
             <q-btn
@@ -58,7 +65,8 @@ export default {
       quizStep: 1,
       quizQuestions: {},
       disabledNextButton: true,
-      quizProgress: []
+      quizProgress: [],
+      currentAnswers: []
     };
   },
   mounted() {
@@ -69,6 +77,7 @@ export default {
       const currentStepData = this.quizProgress.filter(
         ({ questionId }) => questionId === newStep
       )[0];
+      this.currentAnswers = currentStepData.answers;
       if (currentStepData.answers.length === 0) {
         this.disabledNextButton = true;
       } else {
