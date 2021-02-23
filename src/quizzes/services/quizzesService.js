@@ -1,5 +1,23 @@
 import { raiseFetchErrorIfExist } from "@/helpers/fetchHelper.js";
 
+export const COLOR_BY_SCORE = [
+  {
+    from: 0,
+    to: 50,
+    color: "red-9",
+  },
+  {
+    from: 50,
+    to: 70,
+    color: "yellow-8",
+  },
+  {
+    from: 70,
+    to: 100,
+    color: "light-green-7",
+  },
+];
+
 export const getAllQuizzes = async () => {
   const response = await fetch(`/api/quizzes`);
   raiseFetchErrorIfExist(response);

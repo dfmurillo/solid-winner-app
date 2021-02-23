@@ -16,6 +16,22 @@
         <q-item-section>
           <q-item-label>
             {{ quiz.name }}
+            <q-chip
+              color="amber-12"
+              text-color="black"
+              icon="lightbulb"
+              v-if="quiz.score"
+            >
+              {{ quiz.score }}%
+            </q-chip>
+            <q-chip
+              color="blue-10"
+              text-color="white"
+              icon="access_time"
+              v-if="quiz.createdAt"
+            >
+              {{ quiz.createdAt }}
+            </q-chip>
           </q-item-label>
           <q-item-label caption v-if="!quiz.isReady"
             >Not ready yet!</q-item-label
@@ -37,6 +53,7 @@
 </template>
 <script>
 import { getAllQuizzes } from "@/quizzes/services/quizzesService";
+import { getLastQuizTakenFromLocal } from "@/helpers/localStorageHelper";
 export default {
   name: "QuizzesList",
   data() {
@@ -49,7 +66,22 @@ export default {
   },
   methods: {
     async fetchAllQuizzes() {
-      const { quizzes } = await getAllQuizzes();
+      let { quizzes } = await getAllQuizzes();
+
+      //add latest results if they exist
+      quizzes = quizzes.map(quiz => {
+        const latestQuizResult = getLastQuizTakenFromLocal(quiz.id);
+        if (latestQuizResult) {
+          quiz = {
+            ...quiz,
+            score: latestQuizResult.score,
+            createdAt: latestQuizResult.createdAt.split("T")[0]
+          };
+        }
+
+        return quiz;
+      });
+
       this.allQuizzes = quizzes;
     }
   }

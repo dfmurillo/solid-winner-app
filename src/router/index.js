@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "@/views/Home.vue";
+import Quizzes from "@/quizzes/views/Quizzes.vue";
 
 Vue.use(VueRouter);
 
@@ -13,20 +14,31 @@ const routes = [
   {
     path: "/quizzes",
     name: "Quizzes",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "quizzes" */ "@/quizzes/views/Quizzes.vue"),
-  },
-  {
-    path: "/quizzes/:quizId",
-    name: "Quiz",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "quizzes" */ "@/quizzes/views/Quiz.vue"),
+    component: Quizzes,
+    children: [
+      {
+        path: "list",
+        name: "QuizzesList",
+        component: () =>
+          import(
+            /* webpackChunkName: "quizzes" */ "@/quizzes/views/QuizzesList.vue"
+          ),
+      },
+      {
+        path: "history",
+        name: "QuizzesHistory",
+        component: () =>
+          import(
+            /* webpackChunkName: "quizzes" */ "@/quizzes/views/QuizzesHistory.vue"
+          ),
+      },
+      {
+        path: ":quizId",
+        name: "Quiz",
+        component: () =>
+          import(/* webpackChunkName: "quizzes" */ "@/quizzes/views/Quiz.vue"),
+      },
+    ],
   },
 ];
 

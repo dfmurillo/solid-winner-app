@@ -8,7 +8,7 @@
     >
       <q-list>
         <q-item-label header>Quiz options</q-item-label>
-        <q-item to="/" exact>
+        <q-item :to="{ name: 'Home' }" exact>
           <q-item-section avatar>
             <q-icon name="home" />
           </q-item-section>
@@ -16,7 +16,7 @@
             <q-item-label>Home</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item to="/quizzes">
+        <q-item :to="{ name: 'QuizzesList' }">
           <q-item-section avatar>
             <q-icon name="playlist_add_check" />
           </q-item-section>
@@ -25,7 +25,7 @@
             <q-item-label caption>Check my quizzes</q-item-label>
           </q-item-section>
         </q-item>
-        <q-item to="/history">
+        <q-item :to="{ name: 'QuizzesHistory' }">
           <q-item-section avatar>
             <q-icon name="history" />
           </q-item-section>

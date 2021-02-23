@@ -3,7 +3,7 @@ const getQuizKey = (quizId = 0) => {
 };
 
 const setListQuizIdSaved = (quizId) => {
-  const quizzesMap = getQuizzesTakenFromLocal() || [];
+  const quizzesMap = getQuizzesMapTakenFromLocal() || [];
   quizzesMap.push(getQuizKey(quizId));
 
   //ensure I'm not repeating values, so I create a Set to filter duplicates
@@ -20,7 +20,7 @@ export const saveQuizInLocal = (quizId, score, questionAnswers) => {
   quizDataToSave.push({
     score,
     questionAnswers,
-    doneAt: new Date(),
+    createdAt: new Date(),
   });
 
   localStorage.setItem(getQuizKey(quizId), JSON.stringify(quizDataToSave));
@@ -31,6 +31,11 @@ export const getQuizzesByIdFromLocal = (quizId) => {
   return JSON.parse(localStorage.getItem(getQuizKey(quizId)));
 };
 
-export const getQuizzesTakenFromLocal = () => {
+export const getQuizzesMapTakenFromLocal = () => {
   return JSON.parse(localStorage.getItem("quizzes_map"));
+};
+
+export const getLastQuizTakenFromLocal = (quizId) => {
+  const quizzes = getQuizzesByIdFromLocal(quizId);
+  return quizzes ? [...quizzes].pop() : null;
 };

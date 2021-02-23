@@ -14,6 +14,7 @@ const stubs = [
   "q-item-section",
   "q-list",
   "q-banner",
+  "q-chip",
 ];
 
 describe("QuizzesList", () => {
