@@ -25,7 +25,7 @@
 </template>
 <script>
 export default {
-  name: "QuizQuestion",
+  name: "QuizAnswers",
   props: {
     questionAnswers: {
       type: Array,

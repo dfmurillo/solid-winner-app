@@ -1,10 +1,14 @@
+import { raiseFetchErrorIfExist } from "@/helpers/fetchHelper.js";
+
 export const getAllQuizzes = async () => {
   const response = await fetch(`/api/quizzes`);
+  raiseFetchErrorIfExist(response);
   return await response.json();
 };
 
 export const getQuizById = async (quizId) => {
   const response = await fetch(`/api/quizzes/${quizId}`);
+  raiseFetchErrorIfExist(response);
   return await response.json();
 };
 

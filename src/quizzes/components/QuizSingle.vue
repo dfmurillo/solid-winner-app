@@ -1,6 +1,6 @@
 <template>
   <div class="single-quiz">
-    <h4>{{ quizQuestions.name }}</h4>
+    <h4 data-test="quiz-name">{{ quizQuestions.name }}</h4>
     <div class="q-pa-md">
       <q-stepper v-model="quizStep" vertical color="primary" animated>
         <q-step
@@ -10,8 +10,9 @@
           :title="question.question"
           :prefix="question.questionId"
           :done="quizStep > question.questionId"
+          :data-test="`quiz-question`"
         >
-          <quiz-question
+          <quiz-answers
             :questionAnswers="question.answers"
             :answerType="question.answerType"
             :quizStep="quizStep"
@@ -21,10 +22,11 @@
           <q-stepper-navigation>
             <q-btn
               v-if="quizStep < quizQuestions.questions.length"
-              @click="quizStep += 1"
+              @click="showNextQuestion"
               color="primary"
               label="Hit me!"
               :disabled="disabledNextButton"
+              :data-test="`next-question-button`"
             />
             <q-btn
               v-else
@@ -36,7 +38,7 @@
             <q-btn
               v-if="quizStep > 1"
               flat
-              @click="quizStep -= 1"
+              @click="showPreviousQuestion"
               color="primary"
               label="Back"
               class="q-ml-sm"
@@ -48,13 +50,13 @@
   </div>
 </template>
 <script>
-import QuizQuestion from "@/quizzes/components/QuizQuestion.vue";
+import QuizAnswers from "@/quizzes/components/QuizAnswers.vue";
 import { getQuizById, validateQuiz } from "@/quizzes/services/quizzesService";
-import { saveQuizInLocal } from "@/helpers/localStorage";
+import { saveQuizInLocal } from "@/helpers/localStorageHelper";
 export default {
   name: "QuizSingleComponent",
   components: {
-    QuizQuestion
+    QuizAnswers
   },
   props: {
     quizId: {
@@ -79,20 +81,29 @@ export default {
       const currentStepData = this.quizProgress.filter(
         ({ questionId }) => questionId === newStep
       )[0];
-      this.currentAnswers = currentStepData.answers;
-      if (currentStepData.answers.length === 0) {
-        this.disabledNextButton = true;
-      } else {
-        this.disabledNextButton = false;
+
+      if (
+        typeof currentStepData !== "undefined" &&
+        typeof currentStepData.answers !== "undefined"
+      ) {
+        this.currentAnswers = currentStepData.answers;
+        if (currentStepData.answers.length === 0) {
+          this.disabledNextButton = true;
+        } else {
+          this.disabledNextButton = false;
+        }
       }
     }
   },
   methods: {
     async fetchQuizData() {
-      const { quiz } = await getQuizById(this.quizId);
-      this.quizQuestions = quiz;
-
-      this.bootstrapQuizProgress();
+      try {
+        const { quiz } = await getQuizById(this.quizId);
+        this.quizQuestions = quiz;
+        this.bootstrapQuizProgress();
+      } catch (error) {
+        this.$router.push({ name: "Quizzes" });
+      }
     },
     bootstrapQuizProgress() {
       this.quizProgress = this.quizQuestions.questions.map(
@@ -119,6 +130,12 @@ export default {
       const { quizResult } = await validateQuiz(this.quizId, this.quizProgress);
       saveQuizInLocal(this.quizId, quizResult, this.quizProgress);
       this.$router.push({ name: "Quizzes" });
+    },
+    showNextQuestion() {
+      this.quizStep += 1;
+    },
+    showPreviousQuestion() {
+      this.quizStep -= 1;
     }
   }
 };
