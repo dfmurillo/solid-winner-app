@@ -12,6 +12,9 @@ Continuing with the work, now I'm going to implement the functionality no naviga
 Well, at this point I have decided to continue with the functionality and do tests at the end, normally, I do tests and functionality at the same time, this decision was taken just to gain some time, acknowledging that because of this I could refactor code in further steps.
 I have finished the logic of the answers, now I'm moving towards validating the quiz, and save the quiz result. 
 
+PR (#4)
+Wow, you should be wondering, what happened with the PR 3? well, will be after, remember my decision on the last PR? about leaving tests to the end? Ok, I was feeling kind of guilty and dirty! so yes, created the PR 4 to complete tests :) (I´m proud of myself)
+
 
 [ TODO ]
 [ ] Add micro-interactions
