@@ -60,7 +60,7 @@ describe("Display a single quiz", () => {
     });
     await flushPromises();
 
-    expect(wrapper.vm.$router[0].name).toEqual("Quizzes");
+    expect(wrapper.vm.$router[0].name).toEqual("QuizzesList");
   });
 
   it("Given the user has not answer the current question, when is doing the quiz, then the Hit me! button is disabled", async () => {

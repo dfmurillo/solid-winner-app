@@ -2,7 +2,14 @@
   <div class="single-quiz">
     <h4 data-test="quiz-name">{{ quizQuestions.name }}</h4>
     <div class="q-pa-md">
-      <q-stepper v-model="quizStep" vertical color="primary" animated>
+      <q-stepper
+        v-model="quizStep"
+        ref="stepper"
+        vertical
+        active-color="secondary"
+        done-color="blue-grey-4"
+        animated
+      >
         <q-step
           v-for="question in quizQuestions.questions"
           :key="`question_${question.questionId}`"
@@ -11,6 +18,7 @@
           :prefix="question.questionId"
           :done="quizStep > question.questionId"
           :data-test="`quiz-question`"
+          done-icon="https"
         >
           <quiz-answers
             :questionAnswers="question.answers"
@@ -102,7 +110,7 @@ export default {
         this.quizQuestions = quiz;
         this.bootstrapQuizProgress();
       } catch (error) {
-        this.$router.push({ name: "Quizzes" });
+        this.$router.push({ name: "QuizzesList" });
       }
     },
     bootstrapQuizProgress() {
@@ -129,7 +137,7 @@ export default {
     async validateAndSaveQuiz() {
       const { quizResult } = await validateQuiz(this.quizId, this.quizProgress);
       saveQuizInLocal(this.quizId, quizResult, this.quizProgress);
-      this.$router.push({ name: "Quizzes" });
+      this.$router.push({ name: "QuizzesList" });
     },
     showNextQuestion() {
       this.quizStep += 1;
