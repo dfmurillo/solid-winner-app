@@ -1,8 +1,8 @@
-export const formatDateForTimeline = (date) => {
+export const formatDateForTimeline = date => {
   const quizDate = new Date(date);
 
   if (isNaN(quizDate.getTime())) {
-    return false;
+    return null;
   }
 
   return `${getMonthOfYear(
@@ -10,7 +10,7 @@ export const formatDateForTimeline = (date) => {
   )} ${quizDate.getDay()}, ${quizDate.getFullYear()} at ${quizDate.getHours()}:${quizDate.getMinutes()}`;
 };
 
-const getMonthOfYear = (dateMonth) =>
+const getMonthOfYear = dateMonth =>
   [
     "January",
     "February",
@@ -23,5 +23,5 @@ const getMonthOfYear = (dateMonth) =>
     "September",
     "October",
     "November",
-    "December",
+    "December"
   ][dateMonth] || null;

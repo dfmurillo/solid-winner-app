@@ -86,21 +86,22 @@ export default {
   },
   watch: {
     quizStep(newStep) {
-      const currentStepData = this.quizProgress.filter(
+      const [currentStepData] = this.quizProgress.filter(
         ({ questionId }) => questionId === newStep
-      )[0];
+      );
 
       if (
-        typeof currentStepData !== "undefined" &&
-        typeof currentStepData.answers !== "undefined"
+        typeof currentStepData === "undefined" ||
+        typeof currentStepData.answers === "undefined"
       ) {
-        this.currentAnswers = currentStepData.answers;
-        if (currentStepData.answers.length === 0) {
-          this.disabledNextButton = true;
-        } else {
-          this.disabledNextButton = false;
-        }
+        return false;
       }
+
+      this.currentAnswers = currentStepData.answers;
+      this.disabledNextButton =
+        currentStepData.answers.length === 0 ? true : false;
+
+      return true;
     }
   },
   methods: {
@@ -108,12 +109,12 @@ export default {
       try {
         const { quiz } = await getQuizById(this.quizId);
         this.quizQuestions = quiz;
-        this.bootstrapQuizProgress();
+        this.initializeQuizData();
       } catch (error) {
         this.$router.push({ name: "QuizzesList" });
       }
     },
-    bootstrapQuizProgress() {
+    initializeQuizData() {
       this.quizProgress = this.quizQuestions.questions.map(
         ({ questionId }) => ({
           questionId,
@@ -124,20 +125,26 @@ export default {
     answerIsSelected(selectedAnswers) {
       this.quizProgress = this.quizProgress.map(questionProgress => {
         if (questionProgress.questionId === this.quizStep) {
-          return {
+          questionProgress = {
             ...questionProgress,
             answers: selectedAnswers
           };
         }
-
         return questionProgress;
       });
       this.disabledNextButton = false;
     },
     async validateAndSaveQuiz() {
-      const { quizResult } = await validateQuiz(this.quizId, this.quizProgress);
-      saveQuizInLocal(this.quizId, quizResult, this.quizProgress);
-      this.$router.push({ name: "QuizzesList" });
+      try {
+        const { quizResult } = await validateQuiz(
+          this.quizId,
+          this.quizProgress
+        );
+        saveQuizInLocal(this.quizId, quizResult, this.quizProgress);
+        this.$router.push({ name: "QuizzesList" });
+      } catch (error) {
+        // handle error
+      }
     },
     showNextQuestion() {
       this.quizStep += 1;

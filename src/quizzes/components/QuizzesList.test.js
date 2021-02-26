@@ -4,7 +4,7 @@ import { getAllQuizzes } from "@/quizzes/services/quizzesService";
 import QuizzesList from "./QuizzesList.vue";
 
 jest.mock("@/quizzes/services/quizzesService", () => ({
-  getAllQuizzes: jest.fn(),
+  getAllQuizzes: jest.fn()
 }));
 
 const stubs = [
@@ -15,6 +15,7 @@ const stubs = [
   "q-list",
   "q-banner",
   "q-chip",
+  "q-circular-progress"
 ];
 
 describe("QuizzesList", () => {
@@ -24,19 +25,19 @@ describe("QuizzesList", () => {
         {
           id: 11,
           name: "Name 1",
-          isReady: true,
+          isReady: true
         },
         {
           id: 12,
           name: "Name 2",
-          isReady: true,
+          isReady: true
         },
         {
           id: 13,
           name: "Name 3",
-          isReady: false,
-        },
-      ],
+          isReady: false
+        }
+      ]
     });
 
     const wrapper = shallowMount(QuizzesList, { stubs });
@@ -62,7 +63,7 @@ describe("QuizzesList", () => {
 
   it("Given we don't have quizzes to show, when mounting QuizzesList, the we show a sorry message", async () => {
     getAllQuizzes.mockResolvedValue({
-      quizzes: [],
+      quizzes: []
     });
 
     const wrapper = shallowMount(QuizzesList, { stubs });

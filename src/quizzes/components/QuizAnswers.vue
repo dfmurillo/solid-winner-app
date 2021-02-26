@@ -57,12 +57,9 @@ export default {
     assignValuesToQuestion() {
       if (this.previousData.length === 0 && this.answerType === "multiple") {
         this.fillAnswersValueWithFalse();
-        return true;
       } else if (this.previousData.length > 0) {
         this.assingPreviousDataToComponent();
-        return true;
       }
-      return false;
     },
     fillAnswersValueWithFalse() {
       this.multipleAnswersValue = Array.from(
@@ -73,13 +70,11 @@ export default {
     assingPreviousDataToComponent() {
       if (this.answerType === "single") {
         this.singleAnswersValue = this.previousData[0];
-        return true;
       } else {
         this.multipleAnswersValue = this.questionAnswers.map(({ answerId }) =>
           this.previousData.indexOf(answerId) >= 0 ? answerId : false
         );
       }
-      return false;
     },
     multipleOptionSelected() {
       this.emitAnswer(this.multipleAnswersValue.filter(value => value));

@@ -54,7 +54,6 @@ export default {
             quizHistory: quizHistory.reverse()
           };
         }
-
         return quiz;
       });
 
@@ -64,11 +63,10 @@ export default {
       return formatDateForTimeline(date);
     },
     colorBasedOnScore(score) {
-      const colorThreshold = COLOR_BY_SCORE.filter(
+      const [colorThreshold] = COLOR_BY_SCORE.filter(
         ({ from, to }) => score >= from && score < to
       );
-
-      return colorThreshold[0].color;
+      return colorThreshold.color;
     }
   }
 };

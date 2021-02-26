@@ -5,9 +5,9 @@ import { shallowMount } from "@vue/test-utils";
 const mocks = {
   $route: {
     params: {
-      quizId: 1,
-    },
-  },
+      quizId: 1
+    }
+  }
 };
 
 describe("Quiz View", () => {
