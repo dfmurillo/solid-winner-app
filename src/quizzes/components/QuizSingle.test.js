@@ -4,12 +4,12 @@ import { getQuizById } from "@/quizzes/services/quizzesService";
 import { shallowMount } from "@vue/test-utils";
 
 jest.mock("@/quizzes/services/quizzesService", () => ({
-  getQuizById: jest.fn(),
+  getQuizById: jest.fn()
 }));
 
 const stubs = ["q-btn", "q-step", "q-stepper", "q-stepper-navigation"];
 const propsData = {
-  quizId: 1,
+  quizId: 1
 };
 
 const factoryWrapper = (options = {}) =>
@@ -25,22 +25,22 @@ describe("Display a single quiz", () => {
             questionId: 11,
             question: "Question N1",
             answers: [],
-            answerType: "Some string",
+            answerType: "Some string"
           },
           {
             questionId: 12,
             question: "Question N2",
             answers: [],
-            answerType: "Some string",
+            answerType: "Some string"
           },
           {
             questionId: 13,
             question: "Question N3",
             answers: [],
-            answerType: "Some string",
-          },
-        ],
-      },
+            answerType: "Some string"
+          }
+        ]
+      }
     });
 
     const wrapper = factoryWrapper();
@@ -55,8 +55,8 @@ describe("Display a single quiz", () => {
 
     const wrapper = factoryWrapper({
       mocks: {
-        $router: [],
-      },
+        $router: []
+      }
     });
     await flushPromises();
 
@@ -72,10 +72,10 @@ describe("Display a single quiz", () => {
             questionId: 11,
             question: "Question N1",
             answers: [],
-            answerType: "Some string",
-          },
-        ],
-      },
+            answerType: "Some string"
+          }
+        ]
+      }
     });
 
     const wrapper = factoryWrapper();
@@ -91,10 +91,10 @@ describe("Display a single quiz", () => {
             questionId: 11,
             question: "Question N1",
             answers: [],
-            answerType: "Some string",
-          },
-        ],
-      },
+            answerType: "Some string"
+          }
+        ]
+      }
     });
 
     const wrapper = factoryWrapper();
@@ -112,16 +112,16 @@ describe("Display a single quiz", () => {
             questionId: 1,
             question: "Question N1",
             answers: [],
-            answerType: "Some string",
+            answerType: "Some string"
           },
           {
             questionId: 2,
             question: "Question N2",
             answers: [],
-            answerType: "Some string",
-          },
-        ],
-      },
+            answerType: "Some string"
+          }
+        ]
+      }
     });
 
     const wrapper = factoryWrapper();

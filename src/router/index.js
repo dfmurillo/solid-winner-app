@@ -9,7 +9,7 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    component: Home,
+    component: Home
   },
   {
     path: "/quizzes",
@@ -22,7 +22,7 @@ const routes = [
         component: () =>
           import(
             /* webpackChunkName: "quizzes" */ "@/quizzes/views/QuizzesList.vue"
-          ),
+          )
       },
       {
         path: "history",
@@ -30,22 +30,22 @@ const routes = [
         component: () =>
           import(
             /* webpackChunkName: "quizzes" */ "@/quizzes/views/QuizzesHistory.vue"
-          ),
+          )
       },
       {
         path: ":quizId",
         name: "Quiz",
         component: () =>
-          import(/* webpackChunkName: "quizzes" */ "@/quizzes/views/Quiz.vue"),
-      },
-    ],
-  },
+          import(/* webpackChunkName: "quizzes" */ "@/quizzes/views/Quiz.vue")
+      }
+    ]
+  }
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes,
+  routes
 });
 
 export default router;

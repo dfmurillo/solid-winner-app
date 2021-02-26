@@ -1,4 +1,4 @@
-export const raiseFetchErrorIfExist = (response) => {
+export const raiseFetchErrorIfExist = response => {
   //Todo: create my own instance of erros to customize it
   if (typeof response.status === "undefined") {
     throw new Error("Invalid response");
