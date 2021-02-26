@@ -46,6 +46,16 @@ I know every time I think about the test I will find more things I would love to
 
 Good bye!
 
+## How to run the APP
+
+I used yarn, but you can use npm if you want.
+
+1. run `yarn install` to add all the dependencies
+2. run `yarn serve` to initialize the APP
+3. run `yarn test:unit`to run all the tests
+
+For more scripts, please refer to the package.json
+
 Some screenshots from the app:
 ![home_desktop](https://raw.githubusercontent.com/dfmurillo/solid-winner-app/main/screenshots/home_desktop.png?raw=true)
 ![quizzes_desktop](https://raw.githubusercontent.com/dfmurillo/solid-winner-app/main/screenshots/quizzes_desktop.png?raw=true)
