@@ -47,10 +47,10 @@ I know every time I think about the test I will find more things I would love to
 Good bye!
 
 Some screenshots from the app:
-![history_desktop](https://github.com/dfmurillo/solid-winner-app/blob/tech/optimization/history_desktop.png?raw=true)
-![history_mobile](https://github.com/dfmurillo/solid-winner-app/blob/tech/optimization/history_mobile.png?raw=true)
-![home_desktop](https://github.com/dfmurillo/solid-winner-app/blob/tech/optimization/home_desktop.png?raw=true)
-![menu_mobile](https://github.com/dfmurillo/solid-winner-app/blob/tech/optimization/menu_mobile.png?raw=true)
-![quiz_desktop](https://github.com/dfmurillo/solid-winner-app/blob/tech/optimization/quiz_desktop.png?raw=true)
-![quiz2_desktop](https://github.com/dfmurillo/solid-winner-app/blob/tech/optimization/quiz2_desktop.png?raw=true)
-![quizzes_desktop](https://github.com/dfmurillo/solid-winner-app/blob/tech/optimization/quizzes_desktop.png?raw=true)
+![history_desktop](https://github.com/dfmurillo/solid-winner-app/blob/main/history_desktop.png?raw=true)
+![history_mobile](https://github.com/dfmurillo/solid-winner-app/blob/main/history_mobile.png?raw=true)
+![home_desktop](https://github.com/dfmurillo/solid-winner-app/blob/main/home_desktop.png?raw=true)
+![menu_mobile](https://github.com/dfmurillo/solid-winner-app/blob/main/menu_mobile.png?raw=true)
+![quiz_desktop](https://github.com/dfmurillo/solid-winner-app/blob/main/quiz_desktop.png?raw=true)
+![quiz2_desktop](https://github.com/dfmurillo/solid-winner-app/blob/main/quiz2_desktop.png?raw=true)
+![quizzes_desktop](https://github.com/dfmurillo/solid-winner-app/blob/main/quizzes_desktop.png?raw=true)
