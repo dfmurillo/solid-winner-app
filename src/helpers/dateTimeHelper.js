@@ -2,7 +2,7 @@ export const formatDateForTimeline = date => {
   const quizDate = new Date(date);
 
   if (isNaN(quizDate.getTime())) {
-    return false;
+    return null;
   }
 
   return `${getMonthOfYear(

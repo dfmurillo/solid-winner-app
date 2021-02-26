@@ -14,7 +14,8 @@ const stubs = [
   "q-item-section",
   "q-list",
   "q-banner",
-  "q-chip"
+  "q-chip",
+  "q-circular-progress"
 ];
 
 describe("QuizzesList", () => {
