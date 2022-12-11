@@ -34,7 +34,7 @@ export default {
   components: { AppMenu },
   data() {
     return {
-      leftDrawerOpen: false
+      leftDrawerOpen: false,
     };
   }
 };

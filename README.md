@@ -64,3 +64,7 @@ Some screenshots from the app:
 ![history_desktop](https://raw.githubusercontent.com/dfmurillo/solid-winner-app/main/screenshots/history_desktop.png?raw=true)
 ![history_mobile](https://raw.githubusercontent.com/dfmurillo/solid-winner-app/main/screenshots/history_mobile.png?raw=true)
 ![menu_mobile](https://raw.githubusercontent.com/dfmurillo/solid-winner-app/main/screenshots/menu_mobile.png?raw=true)
+
+
+
+change 1
